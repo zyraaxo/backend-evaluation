@@ -1,8 +1,9 @@
 const express = require("express");
+
+
 const axios = require("axios");
 const xml2js = require("xml2js");
 const cors = require("cors");
-require("dotenv").config();
 
 const app = express(); //Used express.js to create a server
 const PORT = process.env.PORT || 5001;
@@ -15,7 +16,7 @@ const fetchAndParseXML = async (url) => {
   try {
     const response = await axios.get(url); //Use axios to fetch data from the url
     return new Promise((resolve, reject) => {
-      parser.parseString(response.data, (err, result) => {
+      parser.parseString(response.data, (err, result) => { //converts the xml data into string
         if (err) reject("Error parsing XML");
         resolve(result);
       });
@@ -26,14 +27,14 @@ const fetchAndParseXML = async (url) => {
 };
 
 app.get("/", async (req, res) => {
-  res.redirect("/api/data"); //did this to load up data instantly on browser for testing purposes
+  res.redirect("/api/data"); //launches the /api/data route to create request to backend xml
 });
 
 
 
 app.get("/api/data", async (req, res) => { //used /api/data for the readability and allows future expansion by allwing other calls using /api/examplelink
   try {
-    const xmlUrl1 = "https://raw.githubusercontent.com/MiddlewareNewZealand/evaluation-instructions/main/xml-api/1.xml";
+    const xmlUrl1 = "https://raw.githubusercontent.com/MiddlewareNewZealand/evaluation-instructions/main/xml-api/1.xml"; //Gets both urls
     const xmlUrl2 = "https://raw.githubusercontent.com/MiddlewareNewZealand/evaluation-instructions/main/xml-api/2.xml";
     
     const xmlData1 = await fetchAndParseXML(xmlUrl1);
