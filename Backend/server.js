@@ -31,7 +31,7 @@ app.get("/", async (req, res) => {
 
 
 
-app.get("/api/data", async (req, res) => { //used /api/data for the readiblty and allows future expansion by allwing other calls using /api/examplelink
+app.get("/api/data", async (req, res) => { //used /api/data for the readability and allows future expansion by allwing other calls using /api/examplelink
   try {
     const xmlUrl1 = "https://raw.githubusercontent.com/MiddlewareNewZealand/evaluation-instructions/main/xml-api/1.xml";
     const xmlUrl2 = "https://raw.githubusercontent.com/MiddlewareNewZealand/evaluation-instructions/main/xml-api/2.xml";
